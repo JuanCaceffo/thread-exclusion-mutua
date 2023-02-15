@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <pthread.h>
-#define SIZE 512
+#define CANT 100000
 
 int shared = 5;
 pthread_mutex_t mutex;
@@ -13,7 +13,7 @@ void *funcT1(void *arg){
 
     //atomic function
     pthread_mutex_lock(&mutex);
-    for(i;i <= 100000;i++){
+    for(i;i <= CANT;i++){
         shared++;
     }
     printf ("t1:%i\n",shared);
@@ -24,7 +24,7 @@ void *funcT2(void *arg){
     int i = 0;
     //atomic function
     pthread_mutex_lock(&mutex);
-    for(i;i <= 100000;i++){
+    for(i;i <= CANT;i++){
         shared--;
     }
     printf ("t2:%i\n",shared);
